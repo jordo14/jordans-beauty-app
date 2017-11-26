@@ -7,6 +7,21 @@
     <div class="entry-content">
       <?php the_content(); ?>
     </div>
+    <div>
+      <?php the_post_thumbnail(); ?>
+    </div>
+    <div>
+    <?php the_field("brand") ?>
+    </div>
+    <div>
+    <?php the_field("price") ?>
+    </div>
+    <div>
+    <?php the_field("product_link") ?>
+    </div>
+    <div>
+    <?php the_field("product_type") ?>
+    </div>
     <footer>
       <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
     </footer>
