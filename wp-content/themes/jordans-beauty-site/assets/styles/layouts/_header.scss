@@ -1,0 +1,23 @@
+.beauty-name {
+    color: white;
+    background: black;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.nav-primary {
+    background: grey;
+    .menu-main-container{
+        display: table;
+        margin: 0 auto;
+        .nav {
+            li {
+                display: inline;
+                padding: 12px;
+               a  {
+                color: white;
+               }
+            }
+        }
+    }
+}

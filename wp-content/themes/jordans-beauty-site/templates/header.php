@@ -1,6 +1,5 @@
 <header class="banner">
-  <div class="container">
-    <a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+    <h4 class="beauty-name"><?php bloginfo('name'); ?></h4>
     <nav class="nav-primary">
       <?php
       if (has_nav_menu('primary_navigation')) :
@@ -8,5 +7,4 @@
       endif;
       ?>
     </nav>
-  </div>
 </header>
