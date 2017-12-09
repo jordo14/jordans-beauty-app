@@ -14,3 +14,9 @@
     @include make-col($sidebar-sm-columns);
   }
 }
+
+.container {
+  @include media-breakpoint-up(lg) {
+    max-width: 1440px;
+  }
+}

@@ -70,3 +70,52 @@ function json_to_product() {
   }
 }
 add_filter('json_to_product', __NAMESPACE__ . '\\json_to_product');
+
+function product_post_query() {
+  ob_start();
+
+  $args = array(
+    'post_type' => 'product',
+    'posts_per_page' => -1,
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_status' => 'publish'
+  );
+
+  // The Query
+  $the_query = new \WP_Query( $args );
+
+  // The Loop
+  if ( $the_query->have_posts() ) : ?>
+
+
+<div class="grid-container module module-white">
+
+  <div class="grid">
+  <div class="grid-sizer"></div>
+    <?php while ( $the_query->have_posts() ) : ?>
+    <?php $the_query->the_post(); ?>
+
+      <a href="<?php the_permalink(); ?>" class="grid-item">
+        <div class="grid-item-content" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url(<?php the_post_thumbnail_url(); ?>) center / cover no-repeat;">
+          <div class="grid-item-text">
+            <h1><?php echo wp_trim_words( get_the_title(), 7, '...' ); ?></h1>
+          </div>
+          <div class="link-container">
+            <p class="link">Product Details &rarr;</p>
+          </div>
+        </div>
+        </a>
+    <?php endwhile; ?>
+  </div>
+</div>
+  <?php
+    /* Restore original Post Data */
+    wp_reset_postdata();
+  ?>
+  <?php else: ?>
+  <div> No posts! </div>
+  <?php endif;
+}
+
+add_filter('product_post_query', __NAMESPACE__ . '\\product_post_query');

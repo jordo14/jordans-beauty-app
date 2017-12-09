@@ -7,7 +7,16 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "popper.js": "^1.12.3"
+    "popper.js": "^1.12.3",
+    "isotope": "^3.0.4",
+    "bootstrap": "v4.0.0-alpha.6"
+  },
+  "overrides": {
+    "isotope": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
+    }
   }
 }

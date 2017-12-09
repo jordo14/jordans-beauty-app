@@ -29,7 +29,10 @@
     </div>
     <h2>Reviews</h2>
     <div>
-    <?php echo do_shortcode( ' [submit-review] ' ); ?>
+    <?php $postID = get_the_ID(); ?>
+    <?php echo do_shortcode( ' [RICH_REVIEWS_SNIPPET category="page" id="'. $postID .'"] ' ); ?>
+    <?php echo do_shortcode( ' [RICH_REVIEWS_SHOW category="page" num="5" id="'. $postID .'"] ' ); ?>
+    <?php echo do_shortcode( ' [RICH_REVIEWS_FORM] ' ); ?>
     </div>
     <footer>
       <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
