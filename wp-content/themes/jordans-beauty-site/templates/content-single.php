@@ -1,5 +1,7 @@
 <?php while (have_posts()) : the_post(); ?>
   <article <?php post_class(); ?>>
+  <?php $post_type = get_post_type(); ?>
+    <?php if ($post_type == 'product'): ?>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -37,6 +39,14 @@
     <footer>
       <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
     </footer>
+    <?php else: ?>
+    <header>
+      <h1 class="entry-title my-title"><?php the_title(); ?></h1>
+    </header>
+    <div class="entry-content">
+            <?php the_content(); ?>
+          </div>
+    <?php endif; ?>
     <?php comments_template('/templates/comments.php'); ?>
   </article>
 <?php endwhile; ?>

@@ -86,6 +86,33 @@
 
           loadMore(counter);
         });
+
+        //when filter button clicked
+        $("#filterButton").click(function () {
+          var brandSelectValue = $("#brandSelect").val();
+          var tagSelectValue = $("#tagSelect").val();
+          var typeSelectValue = $("#typeSelect").val();
+
+          var filterString = '';
+
+          if (brandSelectValue) {
+            filterString += '.' + brandSelectValue
+          }
+          if (tagSelectValue) {
+            filterString += '.' + tagSelectValue
+          }
+          if (typeSelectValue) {
+            filterString += '.' + typeSelectValue
+          }
+
+          if (filterString === '') {
+            $grid.isotope({ filter: '' });
+            loadMore(initShow);
+          } else {
+            $grid.isotope({ filter: filterString });
+            loadMore(initShow);
+          }
+        });
       }
     }
   };

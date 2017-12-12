@@ -90,13 +90,54 @@ function product_post_query() {
 
 
 <div class="grid-container module module-white">
+    <div class='product-filters'>
+	    <select name="brand" id="brandSelect">
+        <option value=''>Brand</option>
+        <option value='Pure-Anada'>Pure Anada</option>
+        <option value="LOreal-Paris">L'Oreal Paris</option>
+        <option value='Physicians-Formula'>Physicians Formula</option>
+        <option value='Pacifica'>Pacifica</option>
+        <option value='Maybelline'>Maybelline</option>
+        <option value='Covergirl'>Covergirl</option>
+        <option value='elf'>e.l.f</option>
+        <option value='Earth-Lab-Cosmetics'>Earth Lab Cosmetics</option>
+        <option value='Suncoat'>Suncoat</option>
+	    </select>
+      <select name="type" id="typeSelect">
+      <option value=''>Type</option>
+      <option value='mascara'>Mascara</option>
+      </select>
+      <select name="tag" id="tagSelect">
+        <option value=''>Tag</option>
+        <option value='Gluten-Free'>Gluten Free</option>
+        <option value='Natural'>Natural</option>
+        <option value='Vegan'>Vegan</option>
+      </select>
+    </div>
+    <div>
+    <input type='submit' id="filterButton" value='Filter!'>
+    </div>
 
   <div class="grid">
   <div class="grid-sizer"></div>
     <?php while ( $the_query->have_posts() ) : ?>
     <?php $the_query->the_post(); ?>
+    <?php $brandClass = str_replace(" ","-", get_field('brand')); ?>
+    <?php $brandClassFormat1 = str_replace("'", "", $brandClass); ?>
+    <?php $brandClassFormat2 = str_replace(".", "", $brandClassFormat1); ?>
 
-      <a href="<?php the_permalink(); ?>" class="grid-item">
+    <?php $typeClass = str_replace(" ","-", get_field('product_type')); ?>
+    <?php $typeClassFormat1 = str_replace("'", "", $typeClass); ?>
+    <?php $typeClassFormat2 = str_replace(".", "", $typeClassFormat1); ?>  
+
+    <?php $tagClassString = get_field('tag'); ?>
+    <?php $tagClassStringFormatted = str_replace(",", "", $tagClassString); ?>
+
+    <pre>
+    <?php $tagClassStringFormatted ?>
+    </pre>
+    
+      <a href="<?php the_permalink(); ?>" class="grid-item <?php echo $brandClassFormat2; ?> <?php echo $typeClassFormat2; ?> <?php echo $tagClassStringFormatted; ?>">
         <div class="grid-item-content" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url(<?php the_post_thumbnail_url(); ?>) center / cover no-repeat;">
           <div class="grid-item-text">
             <h1><?php echo wp_trim_words( get_the_title(), 7, '...' ); ?></h1>
